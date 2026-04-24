@@ -1,16 +1,28 @@
-# React + Vite
+# Autismo Recursos - Frontend Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend del proyecto integrador final "Autismo Recursos". Es una aplicación web responsiva construida con React, Vite y Axios.
 
-Currently, two official plugins are available:
+## Características
+- **Autenticación completa:** Flujos de Login, Registro y Recuperación de contraseña (interfaz amigable con validación de formularios).
+- **Diseño Moderno:** Tema oscuro con estilo neomorfismo (Glassmorphism), iconos interactivos y transiciones fluidas. Completamente adaptable a móviles (Responsive).
+- **Gestión de Recursos:** Interfaz para crear, unirse, explorar y eliminar espacios de trabajo (Workspaces). Edición en línea de recursos.
+- **Chat en tiempo real:** Comunicación entre miembros del mismo espacio.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Instalación y Ejecución
 
-## React Compiler
+1. Entrar a la carpeta `frontend` y descargar dependencias:
+   ```bash
+   npm install
+   ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Configurar variables de entorno. Puedes crear un archivo `.env` en esta carpeta si tu backend no corre en el puerto 5000:
+   ```env
+   VITE_API_URL=http://localhost:5000/api
+   ```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Iniciar el servidor de desarrollo de Vite:
+   ```bash
+   npm run dev
+   ```
+   
+4. Abrir en el navegador: `http://localhost:5173`.

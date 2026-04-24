@@ -3,9 +3,11 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Categories from './pages/Categories';
 import Verify from './pages/Verify';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import Workspaces from './pages/Workspaces';
+import Users from './pages/Users';
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useAuth();
@@ -24,19 +26,22 @@ function App() {
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/verify/:token" element={<Verify />} />
+                            <Route path="/forgot-password" element={<ForgotPassword />} />
+                            <Route path="/reset-password/:token" element={<ResetPassword />} />
+                            <Route path="/" element={<Navigate to="/workspaces" />} />
                             <Route 
-                                path="/" 
+                                path="/workspaces" 
                                 element={
                                     <ProtectedRoute>
-                                        <Dashboard />
+                                        <Workspaces />
                                     </ProtectedRoute>
                                 } 
                             />
                             <Route 
-                                path="/categories" 
+                                path="/users" 
                                 element={
                                     <ProtectedRoute>
-                                        <Categories />
+                                        <Users />
                                     </ProtectedRoute>
                                 } 
                             />

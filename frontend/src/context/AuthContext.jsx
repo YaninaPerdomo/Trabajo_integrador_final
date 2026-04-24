@@ -8,11 +8,21 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
+        const checkUser = async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await api.get('/auth/profile');
+                    setUser(response.data.data);
+                    localStorage.setItem('user', JSON.stringify(response.data.data));
+                } catch (err) {
+                    console.error('Error al verificar sesión', err);
+                    logout();
+                }
+            }
+            setLoading(false);
+        };
+        checkUser();
     }, []);
 
     const login = async (email, password) => {

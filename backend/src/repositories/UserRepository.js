@@ -17,6 +17,13 @@ class UserRepository {
         return await User.findOne({ verificationToken: token });
     }
 
+    async findByResetPasswordToken(token) {
+        return await User.findOne({ 
+            resetPasswordToken: token,
+            resetPasswordExpire: { $gt: Date.now() }
+        });
+    }
+
     async update(user) {
         return await user.save();
     }

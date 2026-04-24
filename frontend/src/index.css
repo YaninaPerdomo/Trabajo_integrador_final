@@ -2,11 +2,19 @@
   --primary: #6366f1;
   --primary-hover: #4f46e5;
   --bg-dark: #0f172a;
-  --bg-card: #1e293b;
+  --bg-card: rgba(30, 41, 59, 0.7);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --danger: #ef4444;
   --success: #22c55e;
+  
+  /* Colores Autismo / Neurodiversidad */
+  --neuro-red: #ff5e5e;
+  --neuro-yellow: #ffdf5e;
+  --neuro-green: #5eff5e;
+  --neuro-blue: #5e5eff;
+  --neuro-purple: #df5eff;
+
   --border: #334155;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -3,8 +3,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
-import categoryRoutes from './routes/categoryRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
+import workspaceRoutes from './routes/workspaceRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 // Configuración de variables de entorno
 dotenv.config();
@@ -20,13 +22,15 @@ app.use(express.json());
 
 // Ruta de prueba
 app.get('/', (req, res) => {
-    res.json({ message: 'API de Gestión de Eventos Funcionando' });
+    res.json({ message: 'API de Gestión de Workspaces Funcionando' });
 });
 
 // Rutas de la API
 app.use('/api/auth', authRoutes);
-app.use('/api/categories', categoryRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/workspaces', workspaceRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Manejo de errores centralizado (placeholder)
 app.use((err, req, res, next) => {

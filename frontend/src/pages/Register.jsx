@@ -1,26 +1,17 @@
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useRegister } from '../hooks/useRegister';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
-    const { register } = useAuth();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await register({ name, email, password });
-            setMessage('Registro exitoso. Revisa tu correo para verificar tu cuenta.');
-            setError('');
-        } catch (err) {
-            setError(err.response?.data?.message || 'Error al registrarse');
-            setMessage('');
-        }
-    };
+    const {
+        name, setName,
+        email, setEmail,
+        password, setPassword,
+        showPassword, setShowPassword,
+        message,
+        error,
+        handleSubmit
+    } = useRegister();
 
     return (
         <div className="glass" style={{ maxWidth: '400px', margin: '40px auto', padding: '30px', borderRadius: '16px' }}>
@@ -38,9 +29,30 @@ const Register = () => {
                         <label>Email</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: '20px', position: 'relative' }}>
                         <label>Contraseña</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)} 
+                            required 
+                            style={{ paddingRight: '40px' }}
+                        />
+                        <button 
+                            type="button" 
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{ 
+                                position: 'absolute', 
+                                right: '10px', 
+                                top: '38px', 
+                                background: 'none', 
+                                border: 'none', 
+                                cursor: 'pointer',
+                                color: 'var(--text-muted)'
+                            }}
+                        >
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </button>
                     </div>
                     <button type="submit" className="btn-primary" style={{ width: '100%' }}>Registrarse</button>
                 </form>
