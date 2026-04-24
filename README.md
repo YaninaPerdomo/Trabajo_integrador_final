@@ -1,6 +1,6 @@
 # Autismo Recursos - Plataforma Integral de Comunidad y Gestión
 
-Este proyecto es el **Trabajo Integrador Final** de la carrera, consistente en una aplicación web full-stack diseñada para centralizar recursos, facilitar la comunicación y gestionar eventos relacionados con el Trastorno del Espectro Autista (TEA). La plataforma permite la interacción entre familias, profesionales y personas interesadas a través de espacios de trabajo colaborativos y canales temáticos.
+Este proyecto es el **Trabajo Integrador Final**, consistente en una aplicación web full-stack diseñada para centralizar recursos, facilitar la comunicación y gestionar eventos relacionados con el Trastorno del Espectro Autista (TEA). La plataforma permite la interacción entre familias, profesionales y personas interesadas a través de espacios de trabajo colaborativos y canales temáticos.
 
 ## 🚀 Características Principales
 
