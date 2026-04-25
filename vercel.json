@@ -1,21 +1,19 @@
 {
   "version": 2,
+  "functions": {
+    "backend/src/index.js": {
+      "runtime": "vercel-node@latest"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/backend/src/index.js"
     },
     {
-      "source": "/assets/(.*)",
-      "destination": "/frontend/dist/assets/$1"
-    },
-    {
-      "source": "/favicon.svg",
-      "destination": "/frontend/dist/favicon.svg"
-    },
-    {
-      "source": "/icons.svg",
-      "destination": "/frontend/dist/icons.svg"
+      "source": "/((?!api/).*)",
+      "destination": "/frontend/dist/$1",
+      "continue": true
     },
     {
       "source": "/((?!api/).*)",
