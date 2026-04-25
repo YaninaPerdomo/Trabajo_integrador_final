@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    // Si hay una variable de entorno la usa, si no, usa /api (ruta relativa para Vercel)
+    baseURL: import.meta.env.VITE_API_URL || '/api',
 });
 
 // Interceptor para agregar el token JWT a las peticiones
