@@ -17,7 +17,28 @@ connectDB();
 const app = express();
 
 // Middlewares globales
-app.use(cors());
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://localhost:5173',
+    'https://trabajo-integrador-final-9ve4-front.vercel.app'
+].filter(Boolean);
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Permite peticiones sin origin (ej: Postman, mobile)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
+
+// Manejo explícito de preflight OPTIONS
+app.options('*', cors());
 app.use(express.json());
 
 // Ruta de prueba
