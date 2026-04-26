@@ -101,9 +101,10 @@ class AuthService {
             throw new Error('Credenciales inválidas');
         }
 
-        if (!user.isVerified) {
-            throw new Error('Por favor verifica tu correo electrónico para iniciar sesión');
-        }
+        // Verificación de email desactivada temporalmente
+        // if (!user.isVerified) {
+        //     throw new Error('Por favor verifica tu correo electrónico para iniciar sesión');
+        // }
 
         const token = generateToken(user._id);
 
