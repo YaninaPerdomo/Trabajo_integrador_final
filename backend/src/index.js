@@ -16,29 +16,13 @@ connectDB();
 
 const app = express();
 
-// Middlewares globales
-const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    'http://localhost:5173',
-    'https://trabajo-integrador-final-9ve4-front.vercel.app'
-].filter(Boolean);
-
+// Middlewares globales - CORS permisivo para permitir el frontend
 app.use(cors({
-    origin: function (origin, callback) {
-        // Permite peticiones sin origin (ej: Postman, mobile)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
-            return callback(null, true);
-        }
-        return callback(new Error('Not allowed by CORS'));
-    },
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
-// Manejo explícito de preflight OPTIONS
-app.options('*', cors());
+app.options('*', cors()); // Manejo explícito de preflight
 app.use(express.json());
 
 // Ruta de prueba
