@@ -16,9 +16,12 @@ connectDB();
 
 const app = express();
 
+const cors =require('cors');
+
 // Middlewares globales - CORS permisivo para permitir el frontend
 app.use(cors({
-    origin: '*',
+    origin: 'https://trabajo-integrador-final-9ve4-front.vercel.app',
+    credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
