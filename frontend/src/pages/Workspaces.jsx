@@ -179,7 +179,7 @@ const Workspaces = () => {
                 <div className="glass" style={{ padding: '40px', borderRadius: '25px', minHeight: '80vh' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            <button className="btn-secondary" onClick={() => { setSelectedWorkspace(null); setEditingResourceIndex(null); setSelectedChannel(null); setShowAddChannel(false); }}>
+                            <button className="btn-secondary" onClick={() => { setSelectedWorkspace(null); setSelectedChannel(null); setShowAddChannel(false); }}>
                                 ← Volver
                             </button>
                             {canManageResources && (
