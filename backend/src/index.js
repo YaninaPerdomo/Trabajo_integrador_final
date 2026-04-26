@@ -16,17 +16,18 @@ connectDB();
 
 const app = express();
 
-// Middlewares globales - CORS permisivo para permitir el frontend
-const corsOptions = {
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-    preflightContinue: false,
-    optionsSuccessStatus: 204
-};
+// ✅ CORS manual - garantiza que los headers siempre se envíen
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    // Responder inmediatamente a las peticiones preflight OPTIONS
+    if (req.method === 'OPTIONS') {
+        return res.status(204).end();
+    }
+    next();
+});
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Manejo explícito de preflight
 app.use(express.json());
 
 // Ruta de prueba
