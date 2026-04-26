@@ -16,16 +16,17 @@ connectDB();
 
 const app = express();
 
-const cors =require('cors');
-
 // Middlewares globales - CORS permisivo para permitir el frontend
-app.use(cors({
-    origin: 'https://trabajo-integrador-final-9ve4-front.vercel.app',
-    credentials: true,
+const corsOptions = {
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
-app.options('*', cors()); // Manejo explícito de preflight
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Manejo explícito de preflight
 app.use(express.json());
 
 // Ruta de prueba
@@ -40,7 +41,7 @@ app.use('/api/workspaces', workspaceRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Manejo de errores centralizado (placeholder)
+// Manejo de errores centralizado
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Algo salió mal en el servidor' });
