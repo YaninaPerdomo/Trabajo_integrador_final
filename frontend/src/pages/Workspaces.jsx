@@ -166,7 +166,7 @@ const Workspaces = () => {
                             <div>
                                 <label>Visibilidad</label>
                                 <select value={visibility} onChange={(e) => setVisibility(e.target.value)}>
-                                    <option value="público">Público (Wiki)</option>
+                                    <option value="público">Público</option>
                                     <option value="privado">Privado (Solo invitados)</option>
                                 </select>
                             </div>
