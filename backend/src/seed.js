@@ -11,11 +11,11 @@ const seed = async () => {
         console.log('Conectado para seeding...');
 
         // Limpiar para asegurar que no haya duplicados con pass sin hashear
-        await User.deleteMany({ email: 'yabepe78@gmail.com' });
+        await User.deleteMany({ email: 'yanyperdomo@gmail.com' });
 
         const admin = await User.create({
             name: 'Admin',
-            email: 'yabepe78@gmail.com',
+            email: 'yanyperdomo@gmail.com',
             password: 'password123',
             isAdmin: true,
             isVerified: true

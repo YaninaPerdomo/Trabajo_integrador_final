@@ -51,7 +51,7 @@ class AuthController {
     async login(req, res) {
         try {
             const { email, password } = req.body;
-            const data = await authService.login(email, password);
+            const data = await authService.login(email.trim().toLowerCase(), password);
             res.status(200).json({
                 success: true,
                 message: 'Login exitoso',

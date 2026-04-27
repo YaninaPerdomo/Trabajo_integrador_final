@@ -51,17 +51,17 @@ const Workspaces = () => {
         <div style={{ paddingBottom: '100px' }}>
             {!selectedWorkspace ? (
                 <>
-                    <div className="glass" style={{ padding: '20px', borderRadius: '15px', marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="glass invite-section" style={{ padding: '20px', borderRadius: '15px', marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
                         <div>
                             <h4 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
                                 <Mail size={18} color="var(--primary)" /> Invitar a alguien a la comunidad
                             </h4>
                             <p style={{ margin: '5px 0 0 0', fontSize: '0.8rem', color: 'var(--text-muted)' }}>Cualquier usuario puede invitar a nuevos miembros.</p>
                         </div>
-                        <form onSubmit={handleSendGeneralInvite} style={{ display: 'flex', gap: '10px' }}>
+                        <form className="invite-form" onSubmit={handleSendGeneralInvite} style={{ display: 'flex', gap: '10px', alignItems: 'stretch' }}>
                             <input type="email" value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="Email del invitado" required style={{ marginBottom: 0, width: '250px' }} />
-                            <button type="submit" className="btn-primary" disabled={inviteLoading}>
-                                {inviteLoading ? 'Enviando...' : <Send size={18} />}
+                            <button type="submit" className="btn-primary" disabled={inviteLoading} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 20px' }}>
+                                {inviteLoading ? '...' : <Send size={18} />}
                             </button>
                         </form>
                     </div>
