@@ -464,25 +464,6 @@ const Workspaces = () => {
                                 </div>
                             )}
 
-                            <div className="glass" style={{ padding: '20px', borderRadius: '20px' }}>
-                                <h4 style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <Users size={18} /> Miembros ({selectedWorkspace.members?.length})
-                                </h4>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '300px', overflowY: 'auto' }}>
-                                    {selectedWorkspace.members?.map(m => (
-                                        <div key={m.user?._id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
-                                            <span style={{ fontWeight: '600' }}>{m.user?.name}</span>
-                                            <span style={{ fontSize: '0.7rem', color: m.role === 'propietario' ? '#ffab00' : 'var(--text-muted)' }}>{m.role}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                                {canManageResources && (
-                                    <form onSubmit={handleAddMember} style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                        <input type="email" value={memberEmail} onChange={(e) => setMemberEmail(e.target.value)} placeholder="Invitar por email..." required style={{ fontSize: '0.8rem' }} />
-                                        <button type="submit" className="btn-primary" style={{ fontSize: '0.8rem' }}>Invitar</button>
-                                    </form>
-                                )}
-                            </div>
                         </div>
                     </div>
                 </div>
