@@ -66,7 +66,7 @@ const Workspaces = () => {
                         </form>
                     </div>
 
-                    <h1 style={{ marginBottom: '10px', textAlign: 'center' }}>¿Qué deseas explorar hoy?</h1>
+                    <h1 className="explore-title" style={{ marginBottom: '10px', textAlign: 'center' }}>¿Qué deseas explorar hoy?</h1>
                     <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '50px' }}>Selecciona una categoría para comenzar a aprender y compartir.</p>
                     
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '25px', marginBottom: '60px' }}>
@@ -94,10 +94,9 @@ const Workspaces = () => {
                                     <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: `${color}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: color }}>
                                         <Info size={30} />
                                     </div>
-                                    <h3 style={{ marginBottom: '10px' }}>{ws.name}</h3>
                                     <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '25px', flex: 1 }}>{ws.description || 'Sin descripción'}</p>
-                                    <button className="btn-primary" style={{ width: '100%', background: color }} onClick={() => setSelectedWorkspace(ws)}>
-                                        Ingresar
+                                    <button className="btn-primary" style={{ width: '100%', background: color, fontSize: '1.1rem', padding: '12px' }} onClick={() => setSelectedWorkspace(ws)}>
+                                        {ws.name}
                                     </button>
                                 </div>
                                 );

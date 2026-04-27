@@ -132,5 +132,9 @@ nav {
   .invite-form input {
     width: 100% !important;
   }
+
+  .explore-title {
+    font-size: 1.4rem !important;
+  }
 }
 
