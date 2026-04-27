@@ -304,7 +304,7 @@ const Workspaces = () => {
                     <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.1)', margin: '40px 0' }} />
 
                     {/* SECCIÓN DE CANALES, CHAT Y MIEMBROS */}
-                    <div style={{ display: 'grid', gridTemplateColumns: selectedWorkspace.channels?.length > 0 ? '220px 2fr 1fr' : '2fr 1fr', gap: '20px' }}>
+                    <div className={`workspace-grid ${selectedWorkspace.channels?.length > 0 ? 'with-channels' : 'without-channels'}`}>
                         
                         {/* SIDEBAR DE CANALES (solo si el workspace tiene canales) */}
                         {selectedWorkspace.channels?.length > 0 && (
@@ -418,7 +418,7 @@ const Workspaces = () => {
                             />
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                        <div className="hide-on-mobile" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                             {/* GESTIÓN DE RECURSOS (Solo Admin) */}
                             {canManageResources && (
                                 <div id="resource-form" className="glass" style={{ padding: '20px', borderRadius: '20px' }}>

@@ -94,3 +94,28 @@ nav {
   border-bottom: 1px solid var(--border);
   margin-bottom: 40px;
 }
+
+/* Workspace Responsive Layout */
+.workspace-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.workspace-grid.with-channels {
+  grid-template-columns: 220px 2fr 1fr;
+}
+
+.workspace-grid.without-channels {
+  grid-template-columns: 2fr 1fr;
+}
+
+@media (max-width: 768px) {
+  .workspace-grid.with-channels,
+  .workspace-grid.without-channels {
+    grid-template-columns: 1fr;
+  }
+  
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
