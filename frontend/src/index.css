@@ -110,6 +110,27 @@ nav {
   grid-template-columns: 2fr 1fr;
 }
 
+.show-on-mobile-only {
+  display: none !important;
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.admin-workspaces-grid {
+  display: grid;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+.admin-workspaces-grid.two-cols {
+  grid-template-columns: 1fr 1fr;
+}
+
+
 @media (max-width: 768px) {
   .workspace-grid.with-channels,
   .workspace-grid.without-channels {
@@ -135,6 +156,17 @@ nav {
 
   .explore-title {
     font-size: 1.4rem !important;
+  }
+
+  .show-on-mobile-only {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .explore-grid, .admin-workspaces-grid, .admin-workspaces-grid.two-cols {
+    grid-template-columns: 1fr !important;
   }
 }
 

@@ -18,7 +18,7 @@ class MessageController {
                     return res.status(403).json({ success: false, message: 'No puedes hablar en un workspace privado si no eres miembro' });
                 }
             }
-            // Si es público, cualquiera puede hablar (requerimiento del usuario)
+            // Si es público, cualquiera puede hablar
 
             const messageData = {
                 workspace: workspaceId,

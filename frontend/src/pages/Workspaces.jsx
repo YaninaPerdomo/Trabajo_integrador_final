@@ -1,8 +1,10 @@
 import { useWorkspaces } from '../hooks/useWorkspaces';
 import { Plus, Trash2, Edit2, Users, Shield, Globe, Lock, UserPlus, MessageSquare, Info, Link as LinkIcon, FileText, CheckCircle, Clock, ArrowRight, UserMinus, Send, Mail, Hash, PlusCircle } from 'lucide-react';
 import Chat from '../components/Chat';
+import React, { useState } from 'react';
 
 const Workspaces = () => {
+    const [mobileView, setMobileView] = useState('channels'); // 'channels' | 'chat'
     const {
         user,
         workspaces,
@@ -69,7 +71,7 @@ const Workspaces = () => {
                     <h1 className="explore-title" style={{ marginBottom: '10px', textAlign: 'center' }}>¿Qué deseas explorar hoy?</h1>
                     <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '50px' }}>Selecciona una categoría para comenzar a aprender y compartir.</p>
                     
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '25px', marginBottom: '60px' }}>
+                    <div className="explore-grid">
                         {allAvailableWorkspaces.length === 0 ? (
                             <p style={{ textAlign: 'center', color: 'var(--text-muted)' }}>No hay espacios disponibles.</p>
                         ) : (
@@ -104,7 +106,7 @@ const Workspaces = () => {
                         )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: user?.isAdmin && pendingWorkspaces.length > 0 ? '1fr 1fr' : '1fr', gap: '30px', marginBottom: '40px' }}>
+                    <div className={`admin-workspaces-grid ${user?.isAdmin && pendingWorkspaces.length > 0 ? 'two-cols' : ''}`}>
                         <div>
                             <h2 style={{ marginBottom: '20px' }}>Mis Espacios</h2>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
@@ -178,7 +180,7 @@ const Workspaces = () => {
                 <div className="glass" style={{ padding: '40px', borderRadius: '25px', minHeight: '80vh' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            <button className="btn-secondary" onClick={() => { setSelectedWorkspace(null); setSelectedChannel(null); setShowAddChannel(false); }}>
+                            <button className="btn-secondary" onClick={() => { setSelectedWorkspace(null); setSelectedChannel(null); setShowAddChannel(false); setMobileView('channels'); }}>
                                 ← Volver
                             </button>
                             {canManageResources && (
@@ -225,7 +227,7 @@ const Workspaces = () => {
                         </div>
                     </div>
 
-                    {/* SECCIÓN DE RECURSOS (SIEMPRE ARRIBA) */}
+                    {/* Sección de recursos */}
                     <div style={{ marginBottom: '40px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                             <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -302,19 +304,19 @@ const Workspaces = () => {
 
                     <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.1)', margin: '40px 0' }} />
 
-                    {/* SECCIÓN DE CANALES, CHAT Y MIEMBROS */}
+                    {/* Sección de canales y chat */}
                     <div className={`workspace-grid ${selectedWorkspace.channels?.length > 0 ? 'with-channels' : 'without-channels'}`}>
                         
-                        {/* SIDEBAR DE CANALES (solo si el workspace tiene canales) */}
+                        {/* Sidebar de canales */}
                         {selectedWorkspace.channels?.length > 0 && (
-                            <div className="glass" style={{ padding: '15px', borderRadius: '15px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                            <div className={`glass ${mobileView === 'chat' ? 'hide-on-mobile' : ''}`} style={{ padding: '15px', borderRadius: '15px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
                                 <h4 style={{ margin: '0 0 10px 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}>
                                     <MessageSquare size={16} color="var(--primary)" /> Canales
                                 </h4>
 
-                                {/* Canal General (siempre primero) */}
+                                {/* Canal General */}
                                 <button
-                                    onClick={() => setSelectedChannel(null)}
+                                    onClick={() => { setSelectedChannel(null); setMobileView('chat'); }}
                                     style={{
                                         display: 'flex', alignItems: 'center', gap: '8px',
                                         padding: '10px 12px', borderRadius: '10px',
@@ -332,7 +334,7 @@ const Workspaces = () => {
                                 {selectedWorkspace.channels.map((ch, idx) => (
                                     <div key={ch._id || idx} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                                         <button
-                                            onClick={() => setSelectedChannel(ch)}
+                                            onClick={() => { setSelectedChannel(ch); setMobileView('chat'); }}
                                             title={ch.description || ch.name}
                                             style={{
                                                 display: 'flex', alignItems: 'center', gap: '8px',
@@ -359,7 +361,7 @@ const Workspaces = () => {
                                     </div>
                                 ))}
 
-                                {/* Botón agregar canal (admin/owner) */}
+                                {/* Botón agregar canal */}
                                 {canManageResources && (
                                     <div style={{ marginTop: '10px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '10px' }}>
                                         {showAddChannel ? (
@@ -398,8 +400,11 @@ const Workspaces = () => {
                             </div>
                         )}
 
-                        {/* CHAT */}
-                        <div>
+                        {/* Chat principal */}
+                        <div className={`${selectedWorkspace.channels?.length > 0 && mobileView === 'channels' ? 'hide-on-mobile' : ''}`}>
+                            <button className="btn-secondary show-on-mobile-only" onClick={() => setMobileView('channels')} style={{ marginBottom: '20px', fontSize: '0.8rem', padding: '6px 12px' }}>
+                                ← Volver a canales
+                            </button>
                             <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                 <MessageSquare size={20} color="var(--primary)" /> 
                                 {selectedChannel ? `# ${selectedChannel.name}` : 'Chat General'}
@@ -418,7 +423,7 @@ const Workspaces = () => {
                         </div>
 
                         <div className="hide-on-mobile" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-                            {/* GESTIÓN DE RECURSOS (Solo Admin) */}
+                            {/* Gestión de recursos */}
                             {canManageResources && (
                                 <div id="resource-form" className="glass" style={{ padding: '20px', borderRadius: '20px' }}>
                                     <h4 style={{ marginBottom: '15px' }}>Añadir nuevo recurso</h4>
