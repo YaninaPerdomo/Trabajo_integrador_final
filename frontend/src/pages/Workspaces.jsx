@@ -91,7 +91,7 @@ const Workspaces = () => {
                                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-10px)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                                 >
-                                    <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: `${color}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: color }}>
+                                    <div className="hide-on-mobile" style={{ width: '60px', height: '60px', borderRadius: '50%', background: `${color}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: color }}>
                                         <Info size={30} />
                                     </div>
                                     <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '25px', flex: 1 }}>{ws.description || 'Sin descripción'}</p>
@@ -153,8 +153,8 @@ const Workspaces = () => {
                     </div>
 
                     <div className="glass" style={{ padding: '25px', borderRadius: '15px' }}>
-                        <h3>¿Deseas debatir un tema nuevo? Propón un espacio</h3>
-                        <form onSubmit={handleCreateWorkspace} style={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr 1fr auto', gap: '15px', alignItems: 'end', marginTop: '15px' }}>
+                        <h3>¿Deseas debatir un tema nuevo?</h3>
+                        <form onSubmit={handleCreateWorkspace} style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '15px' }}>
                             <div>
                                 <label>Título</label>
                                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Ej. Dieta específica" />
